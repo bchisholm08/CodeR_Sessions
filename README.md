@@ -37,6 +37,8 @@ Research Questions:
 - Can we predict the expected yards gained (`yards`) based on the running direction (`runDir`) and the number of plays (`playNum`)? What statistical model best fits the data?
 - Is there a correlation between the running direction (`runDir`) and average yards gained?
 
+<small><em>Note: data above is simulated</em></small>
+
 <hr style="border: 1px solid gray; width: 100%; margin-top: 20px; margin-bottom: 20px;">
 
 
