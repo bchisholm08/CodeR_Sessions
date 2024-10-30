@@ -18,9 +18,9 @@ An example query could be as follows...
 
 <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
   <span>Analyzing NFL Rushing Performance</span>
-  <span>pqn:45968</span>
+  <span></span>
 </div>
-
+pqn:45968
 
 | Player ID  | Yards | Play Number | Run Direction | Defense Formation | Result Type   |
 |------------|-------|-------------|---------------|-------------------|---------------|
