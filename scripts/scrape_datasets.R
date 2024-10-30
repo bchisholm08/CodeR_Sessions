@@ -5,7 +5,6 @@ date: "2024-10-30"
 output: html_document
 ---
 
-```{r}
 
 # Load required packages
 library(rvest)
@@ -95,5 +94,5 @@ learnr_tutorial <- create_learnr_tutorial(output_path)
 # Run the tutorial (uncomment this line to test it)
 # learnr::run_tutorial(learnr_tutorial)
 
-```
+
 
