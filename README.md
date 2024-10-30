@@ -2,7 +2,7 @@
 
 This repository is the home base for the CodeR_Sessions project. 
 #
-The CodeR_Sessions is an open sourced project to help people practice statistics and coding in R. 
+The CodeR-Sessions is an open sourced project to help people practice statistics and coding in R. 
 
 Once built and running, the website will scrape the web for data sets and 
 automatically create research questions surrounding the dataset so that the user 
