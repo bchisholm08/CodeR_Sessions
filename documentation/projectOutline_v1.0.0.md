@@ -1,19 +1,18 @@
-# Step-by-Step Project Guide: Building an R Coding Practice Website
-
 ## Project Overview
 
-- **Technology Stack**: 
-R (backend, data processing), 
-learnr (interactive tutorials), 
-HTML/CSS/JavaScript (frontend styling), 
-Shiny (interactive components), and 
-GitHub (version control and deployment).
+- **Technology Used**:  
+R (backend, data processing), <br>
+learnr (interactive tutorials), <br>
+HTML/CSS/JavaScript (frontend styling), <br> 
+Shiny (interactive components), and <br>
+GitHub (version control, deployment, collaboration). <br>
 
 - **Project Goals**:
   - Web scraping for open datasets.
   - Creating interactive R tutorials using learnr.
   - Hosting the project for users to access and practice R skills.
-  - Integrate Shiny apps for interactive data analysis and visualization.
+  - Use Shiny apps for interactive data analysis and visualization.  
+
 
 
 - **Project Outline & Brainstorm:**
