@@ -13,8 +13,6 @@ GitHub (version control, deployment, collaboration). <br>
   - Hosting the project for users to access and practice R skills.
   - Use Shiny apps for interactive data analysis and visualization.  
 
-
-
 - **Project Outline & Brainstorm:**
 Once built and running, the website will scrape the web for data sets and 
 automatically create research questions surrounding the dataset so that the user 
@@ -44,7 +42,6 @@ Once a user has coded their solution, they will have the option to post it to th
 Users may also upload their own datasets to the website and create custom queries that others may try under the community page. 
 
 Users may also create alternate queries for existing data sets in the community tab 
-
 
 ## 
 
