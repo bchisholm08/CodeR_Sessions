@@ -1,7 +1,6 @@
-### README for CodeR_Sessions
+### README for CodeR_Sessions\www
 
-This repo is for <X> 
-
-This is part of a body of code that has the purpose
-of creating an opensourced library of data sets and 
-research questions for practicing statistics. 
+This folder is for storing web assets like custom CSS, JavaScript, or images used for styling the user interface.
+#
+This is part of a body of code called the "CodeR Sessions" with the mission of creating an opensourced library of data sets and 
+research questions for practicing statistics. s
