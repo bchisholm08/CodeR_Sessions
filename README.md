@@ -13,9 +13,13 @@ automatically generate a number of research questions (RQ) about the dataset so 
 
 An example query could be as follows... 
 
-```
-Analyzing NFL Rushing Performance                                          pqn:45968
-```
+<hr style="border: 1px solid gray; width: 100%; margin-top: 20px; margin-bottom: 20px;">
+
+
+<div style="display: flex; justify-content: space-between;">
+  <span>Analyzing NFL Rushing Performance</span>
+  <span>pqn:45968</span>
+</div>
 
 
 | Player ID  | Yards | Play Number | Run Direction | Defense Formation | Result Type   |
@@ -25,13 +29,16 @@ Analyzing NFL Rushing Performance                                          pqn:4
 | player3    | 50    | 15          | center        | 3-4               | Touchdown     |
 | player4    | 15    | 20          | left          | Dime              | First Down    |
 | player5    | 5     | 25          | right         | 4-3               | No Gain       |
-```
+
+
+
 Research Questions:
 - Explore the relationship between temperature and yards gained. What temperature results in the most yards?
 - Can we predict the expected yards gained (`yards`) based on the running direction (`runDir`) and the number of plays (`playNum`)? What statistical model best fits the data?
 - Is there a correlation between the running direction (`runDir`) and average yards gained?
 
-```
+<hr style="border: 1px solid gray; width: 100%; margin-top: 20px; margin-bottom: 20px;">
+
 
 A page like the one above will be titled and assigned a problem query number (PQN) that allows users to quickly find the same problem set. 
 
