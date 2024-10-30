@@ -16,7 +16,7 @@ An example query could be as follows...
 <hr style="border: 1px solid gray; width: 100%; margin-top: 20px; margin-bottom: 20px;">
 
 
-<div style="display: flex; justify-content: space-between;">
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
   <span>Analyzing NFL Rushing Performance</span>
   <span>pqn:45968</span>
 </div>
