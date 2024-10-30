@@ -5,11 +5,13 @@ date: "2024-10-30"
 output: html_document
 ---
 
+```{r}
 
 # Load required packages
 library(rvest)
 library(tidyverse)
 library(httr)
+library(learnr) # for turning a markdown file into an interactive document
 
 # Function to scrape datasets from open data websites
 scrape_dataset <- function(url, css_selector, output_path) {
@@ -53,6 +55,7 @@ scrape_dataset(url, css_selector, output_path)
 # Function to create an interactive R coding exercise using learnr
 library(learnr)
 
+# I have a feeling this function will get scrapped. I don't want it to be this interactive 
 create_learnr_tutorial <- function(dataset_path) {
   tutorial <- learnr::tutorial(
     title = "Practice R with Real-World Data",
@@ -96,3 +99,5 @@ learnr_tutorial <- create_learnr_tutorial(output_path)
 
 
 
+
+```

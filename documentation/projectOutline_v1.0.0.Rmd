@@ -1,0 +1,240 @@
+---
+title: "Step-by-Step Project Guide: Building an R Coding Practice Website"
+---
+
+# Step-by-Step Project Guide: Building an R Coding Practice Website
+
+## Introduction
+
+This guide provides a step-by-step breakdown for creating your R coding practice website. The goal is to 
+combine web scraping to collect open-source datasets with interactive tutorials that allow users to practice R. 
+Below, you will find an organized plan, suggested file names, a directory structure, and tips for managing a long-term project. 
+This document is aimed at guiding you from the initial setup to full deployment.
+
+## Project Overview
+
+- **Technology Stack**: R (backend, data processing), 
+learnr (interactive tutorials), 
+HTML/CSS/JavaScript (frontend styling), 
+Shiny (interactive components), and 
+GitHub (version control and deployment).
+
+- **Project Goals**:
+  - Web scraping for open datasets.
+  - Creating interactive R tutorials using learnr.
+  - Hosting the project for users to access and practice R skills.
+  - Integrate Shiny apps for interactive data analysis and visualization.
+
+## Directory Structure
+
+Project Directory 
+```
+RStudio_codeR_sessions/
+├── data/
+│   ├── raw/  # Store raw scraped datasets here
+│   └── cleaned/  # Store cleaned and processed datasets here
+├── scripts/
+│   ├── scrape_dataset.R  # Web scraping functions
+│   ├── data_cleaning.R  # Data cleaning and processing functions
+│   └── data_visualization.R  # Data visualization functions using ggplot2
+├── tutorials/
+│   ├── data_exploration.Rmd  # learnr tutorial files
+│   └── data_cleaning_tutorial.Rmd  # learnr tutorial for data cleaning
+├── www/
+│   ├── style.css  # CSS for custom styling of Shiny apps
+│   └── custom.js  # JavaScript for additional interactivity
+├── docs/
+│   ├── README.md  # Project documentation
+│   └── user_guide.md  # Detailed user guide for the project
+├── tests/
+│   ├── test_scraping.R  # Unit tests for scraping functions
+│   └── test_data_cleaning.R  # Unit tests for data cleaning functions
+|── notebooks/
+|   ├── exploratory_analysis.Rmd  # RMarkdown notebooks for prototyping
+|   └── model_prototyping.Rmd  # Prototyping machine learning models
+|
+├── documentation/    
+│   ├── README.md  # documentation
+│   └── 
+```
+
+## Step-by-Step Breakdown
+
+### 1. **Initial Setup**
+
+- **Create the Project Directory**: Start by creating the main folder `RStudio_codeR_sessions`.
+- **Initialize Git**: Open the terminal and navigate to the project directory. Run:
+  ```sh
+  git init
+  git remote add origin https://github.com/bchisholm08/CodeR_Sessions.git
+  ```
+- **Create Initial Files**:
+  - Create a `README.md` in the `docs/` folder to document your project.
+  - Set up the folder structure as outlined above.
+  - Add a `.gitignore` file to ignore unnecessary files (e.g., `.Rhistory`, `.RData`).
+
+### 2. **Web Scraping Component**
+
+- **Web Scraper Script**:
+  - Create the `scripts/scrape_dataset.R` file.
+  - Use the provided code to set up a web scraping function using `rvest` and `httr`.
+  - **Example Code**:
+    ```r
+    library(rvest)
+    library(httr)
+    
+    scrape_dataset <- function(url, css_selector, output_path) {
+      tryCatch({
+        page <- read_html(url)
+        dataset_link <- page %>%
+          html_nodes(css_selector) %>%
+          html_attr('href') %>%
+          .[1] 
+        if (startsWith(dataset_link, "/")) {
+          dataset_link <- paste0(url, dataset_link)
+        }
+        GET(dataset_link, write_disk(output_path, overwrite = TRUE))
+        message("Dataset successfully scraped and saved at: ", output_path)
+      }, error = function(e) {
+        message("Failed to scrape the dataset: ", e$message)
+      })
+    }
+    ```
+- **Enhance the Scraper**:
+  - Modify the function to loop through multiple URLs to scrape multiple datasets in one run.
+  - Add logging functionality to keep track of successfully scraped datasets by creating a `logs/` folder to store logs.
+  - **Logging Example**:
+    ```r
+    log_scrape <- function(message) {
+      log_file <- "logs/scrape_log.txt"
+      write(paste(Sys.time(), "-", message), file = log_file, append = TRUE)
+    }
+    ```
+- **Automate Scraping**:
+  - Set up a cron job (Linux/macOS) or Task Scheduler (Windows) to run the scraping script periodically.
+  - Alternatively, use GitHub Actions to automate the scraping at set intervals.
+
+### 3. **Data Management**
+
+- **Data Cleaning**:
+  - Create a script `scripts/data_cleaning.R` to clean and preprocess datasets after scraping.
+  - Use packages like `dplyr` and `tidyr` to handle missing values, filter data, and transform variables.
+  - **Example Data Cleaning Workflow**:
+    ```r
+    library(dplyr)
+    library(tidyr)
+    
+    clean_data <- function(input_path, output_path) {
+      data <- read.csv(input_path)
+      cleaned_data <- data %>%
+        filter(!is.na(variable)) %>%
+        mutate(new_variable = as.factor(old_variable))
+      write.csv(cleaned_data, output_path, row.names = FALSE)
+      message("Data cleaned and saved at: ", output_path)
+    }
+    ```
+- **Storage**:
+  - Save raw datasets in the `data/raw/` folder and cleaned datasets in the `data/cleaned/` folder.
+  - Add metadata (e.g., source, scraped date) to track dataset origins. Consider creating a `metadata.csv` file to document each dataset.
+
+### 4. **Interactive Tutorials**
+
+- **Create learnr Tutorials**:
+  - In the `tutorials/` folder, create `data_exploration.Rmd`.
+  - Use `learnr` to build interactive exercises that load datasets from the `data/cleaned/` folder.
+  - **Example Exercise**:
+    ```r
+    ```{r}
+    library(learnr)
+    
+    tutorial("Data Exploration Tutorial") {
+      text("Welcome to the data exploration tutorial! Let's start by loading the dataset.")
+      exercise("Load the dataset", "data <- read.csv('data/cleaned/scraped_dataset.csv')", "data")
+    }
+    ```
+- **Expand Tutorial Features**:
+  - Add exercises on data cleaning using `dplyr`, data visualization using `ggplot2`, and basic data analysis.
+  - Include hints or solution reveals to guide users through difficult exercises.
+  - **Add a Quiz**: Use `learnr::question()` to include quizzes that reinforce the material covered.
+
+### 5. **Frontend Development**
+
+- **User Interface**:
+  - Use **Shiny** to create an interactive interface that users can use to practice R coding.
+  - Add custom styles using `www/style.css` for a polished and professional look.
+  - **Suggested Shiny App Components**:
+    - **Dataset Selector**: Allow users to select different datasets for analysis.
+    - **Code Editor**: Embed an R code editor for real-time coding practice.
+    - **Visualization Panel**: Show output plots or tables based on user inputs.
+- **Deployment Preparation**:
+  - Test Shiny apps locally to ensure all components work together smoothly.
+  - Use `shiny::runApp()` to run the app locally and check for bugs or errors.
+
+### 6. **Testing and Quality Assurance**
+
+- **Unit Testing**:
+  - Add unit tests to `tests/test_scraping.R` to verify that the scraper works for different URL formats and correctly handles errors.
+  - **Test Example**:
+    ```r
+    library(testthat)
+    
+    test_that("Scraper works correctly", {
+      expect_error(scrape_dataset("invalid_url", "css_selector", "output.csv"))
+      expect_message(scrape_dataset("https://example.com", ".dataset-link", "output.csv"), "Dataset successfully scraped")
+    })
+    ```
+- **User Testing**:
+  - Invite friends or colleagues to use the tutorials and provide feedback on usability.
+  - Implement a feedback form within the Shiny app to collect input from users.
+
+### 7. **Deployment**
+
+- **Hosting Options**:
+  - Deploy the Shiny app using **Shinyapps.io** or **RStudio Connect** for easy access.
+  - Alternatively, use **GitHub Pages** for a static frontend and link to Shiny apps for dynamic features.
+- **Continuous Integration**:
+  - Set up **GitHub Actions** to automate scraping, cleaning, and testing.
+  - **Deployment Automation**: Automate deployment using GitHub Actions to ensure the latest version is always available online.
+
+### 8. **Documentation and Community Engagement**
+
+- **README.md**:
+  - Provide installation instructions, usage examples, and contribution guidelines in `docs/README.md`.
+  - Include badges for build status and other key project indicators.
+- **User Guides**:
+  - Add detailed user guides to the `docs/user_guide.md` covering how to run tutorials, scrape new datasets, and contribute to the project.
+- **GitHub Community**:
+  - Enable Discussions to allow users to share feedback, ask questions, and suggest new features.
+  - Add `CONTRIBUTING.md` to outline how others can contribute.
+  - Set up issues for feature requests, bugs, and enhancements to foster an active community.
+
+## Suggested File Names
+
+- `scrape_dataset.R`: Web scraping logic for gathering datasets.
+- `data_cleaning.R`: Functions to preprocess and clean the scraped datasets.
+- `data_visualization.R`: Functions for visualizing datasets using `ggplot2`.
+- `data_exploration.Rmd`: learnr tutorial for data exploration.
+- `data_cleaning_tutorial.Rmd`: learnr tutorial for data cleaning exercises.
+- `test_scraping.R`: Unit tests for the scraping functions.
+- `test_data_cleaning.R`: Unit tests for the data cleaning functions.
+- `README.md`: Project documentation.
+- `user_guide.md`: Detailed user guide for the project.
+- `custom.js`: JavaScript for adding interactive elements to Shiny apps.
+
+## Tips for Long-Term Management
+
+- **Version Control**: Regularly commit changes and push to GitHub to keep track of project evolution.
+  - Use descriptive commit messages for easier tracking of changes.
+  - Tag major milestones or releases for easy reference.
+- **Automation**: Automate repetitive tasks, such as data scraping, cleaning, and testing, using GitHub Actions or CRON jobs.
+  - Automate dataset backup to avoid losing important data.
+- **Community Building**: Engage users via GitHub Discussions, and encourage contributions to grow the project.
+  - Create tutorial videos or recorded demos to help new users get started.
+  - Hold live coding sessions or webinars to engage the community.
+
+## Conclusion
+
+This guide provides you with a clear roadmap to create your R coding practice website. Start by setting up the basic folder structure, add functionality incrementally, and ensure you test thoroughly before deployment. By following these steps, you’ll be able to create a valuable resource for learning R through real datasets.
+
+Feel free to ask for further details on any step, or if you'd like specific code examples to help you move forward!
+

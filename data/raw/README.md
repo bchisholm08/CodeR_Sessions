@@ -1,0 +1,1 @@
+This folder is for storing raw, uncleaned data that has been scrapped
