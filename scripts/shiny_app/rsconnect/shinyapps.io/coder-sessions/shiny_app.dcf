@@ -1,0 +1,10 @@
+name: shiny_app
+title:
+username: coder-sessions
+account: coder-sessions
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13180470
+bundleId: 9291460
+url: https://coder-sessions.shinyapps.io/shiny_app/
+version: 1
