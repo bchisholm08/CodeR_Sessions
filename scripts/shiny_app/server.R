@@ -5,6 +5,7 @@ library(dplyr)
 server <- function(input, output) {
   
   # Data Exploration Logic
+  # this code definitely needs to change 
   datasetInput <- eventReactive(input$load, {
     switch(input$dataset,
            "mtcars" = mtcars,
@@ -37,7 +38,7 @@ server <- function(input, output) {
     data <- read.csv(input$file1$datapath)
     # Assume the `clean_data` function is available from sourced script
     output_path <- tempfile(fileext = ".csv")
-    clean_data(input$file1$datapath, output_path)
+    cleanMyData(input$file1$datapath, output_path)
     cleaned_data <- read.csv(output_path)
     output$clean_summary <- renderPrint({
       summary(cleaned_data)

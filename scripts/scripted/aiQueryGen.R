@@ -10,16 +10,16 @@ generate_research_questions <- function(dataset_metadata) {
   # Prepare the prompt using the dataset metadata
   prompt <- paste0(
     "Given the following dataset columns: ", paste(dataset_metadata, collapse = ", "), 
-    ", generate two statistical research questions."
+    ", generate three statistical research questions."
   )
   
   # Set up the request body
   body <- list(
-    model = "text-davinci-003", # other opts? 
+    model = "text-davinci-003",
     prompt = prompt,
-    max_tokens = 150, 
-    n = 2, # num expected responses? 
-    temperature = 0.7 # google this 
+    max_tokens = 150,
+    n = 3,
+    temperature = 0.7
   )
   
   # Make the POST request to the OpenAI API
@@ -40,9 +40,9 @@ generate_research_questions <- function(dataset_metadata) {
   questions <- sapply(response_content$choices, function(choice) choice$text)
   
   return(questions)
-} # function end 
+}
 
-# Example
+# Example usage
 # dataset_metadata <- c("player", "yards_per_carry", "team", "attempts")
 # questions <- generate_research_questions(dataset_metadata)
 # print(questions)

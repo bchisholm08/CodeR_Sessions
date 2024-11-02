@@ -17,11 +17,11 @@ ui <- navbarPage(
     )
   ),
   
- # Explore Queries Page
+ # create queries Page
   tabPanel(
-    "Explore Queries",
+    "Explore More Queries",
     fluidPage(
-      titlePanel("Explore Generated Queries"),
+      titlePanel("Explore User & Computer Generated Queries"),
       selectInput("query_topic", "Filter by Topic:", choices = c("NFL", "Healthcare", "Economics")),
       dataTableOutput("query_table")
     )
@@ -49,7 +49,7 @@ ui <- navbarPage(
   ),
   
   # Data Cleaning Page
-  tabPanel(
+  shiny::tabPanel(
     title = "Clean Your Data",
     fluidPage(
       titlePanel("Clean Your Data"),
@@ -60,7 +60,7 @@ ui <- navbarPage(
   ),
   
   # Visualization Page
-  tabPanel(
+  shiny::tabPanel(
     title = "Visualize Data",
     fluidPage(
       titlePanel("Data Visualization"),
@@ -77,7 +77,7 @@ ui <- navbarPage(
   )  # end tab panel
 
   # Community Page
-  tabPanel(
+    shiny::tabPanel(
     "Community",
     fluidPage(
       titlePanel("Community Contributions"),
