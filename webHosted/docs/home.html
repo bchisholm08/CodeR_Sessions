@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RStudio CodeR Sessions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7fb;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #2a3d66;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #1f2a3b;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        nav a:hover {
+            background-color: #e74c3c;
+            transition: 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1200x600') no-repeat center center/cover;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .hero a {
+            color: #fff;
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        /* Main Content Section */
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .content .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .content .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .card a {
+            color: #e74c3c;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        /* What We're Working On Section */
+        .working-section {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .working-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2a3d66;
+        }
+
+        .working-section p {
+            font-size: 1.2em;
+            margin: 0 0 20px;
+            color: #555;
+        }
+
+        .working-section .highlight {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2a3d66;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to The CodeR Sessions</h1>
+        <h3>The intersection of open science and statistics.</h3>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#sessions">Sessions</a>
+        
+        <!-- Dropdown for About -->
+        <div class="dropdown">
+            <a href="#" class="dropbtn">About</a>
+            <div class="dropdown-content">
+                <a href="#about-team">Our Team</a>
+                <a href="#about-mission">Mission</a>
+                <a href="#about-history">History</a>
+            </div>
+        </div>
+        
+        <a href="#contact">Contact</a>
+        
+        <!-- Dropdown for Resources -->
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Resources</a>
+            <div class="dropdown-content">
+                <a href="#docs">Documentation</a>
+                <a href="#tutorials">Tutorials</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+        /* Navbar Styling */
+        nav {
+            background-color: #1f2a3b;
+            display: flex;
+            justify-content: center;
+            padding: 8px;
+        }
+    
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+    
+        nav a:hover {
+            background-color: #e74c3c;
+            transition: 0.3s ease;
+        }
+    
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+    
+        .dropbtn {
+            color: #fff;
+            font-size: 1.1em;
+            padding: 14px 20px;
+            background-color: #1f2a3b;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    
+        .dropbtn:hover {
+            background-color: #e74c3c;
+        }
+    
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+    
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1.1em;
+        }
+    
+        .dropdown-content a:hover {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+    
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Enhance Your R Programming Skills</h2>
+        <p>Join us for interactive coding sessions designed to boost your knowledge and confidence.</p>
+        <a href="#sessions">Start Learning Now</a>
+    </section>
+
+<!-- Session Explanation Section -->
+<section class="session-section">
+    <div class="container">
+        <h2>What is a CodeR Session?</h2>
+        <p>The <span class="highlight">CodeR-Sessions</span> is an open-sourced project designed to help people practice statistics and coding in R. Here's what we do:</p>
+        <div class="content">
+The CodeR Sessions is a project focused on highlighting the open source resources available for individuals wanting to learn R. Data science, coding, and statistics are all fields becoming 
+more prominent. Statistics plays a large role in these realms, and R provides a route for teaching yourself skills that are truly applicable to your job. 
+
+The website scrapes the web for viable datasets based on a set of parameters from algorithm code in THIS GitHub repo. After a suitable dataset is found, 
+a set of research questions (RQ's) is generated that relate to the data. Once one of these combinations of a data set and RQ's is found, it's saved 
+as a query&mdash; a prompt in the form of a PDF document that is ready for the user to practice R with! 
+
+
+
+
+            <p>The website scrapes the web for datasets and automatically generates research questions (RQ) related to the data. Once a combination of data and RQs is found, it's saved as a query, a question prompt that includes both the dataset and RQs ready for you to practice with!</p>
+            <p>For example, a query could look like this:</p>
+            <div class="example-query">
+                <h3>Analyzing NFL Rushing Performance</h3>
+                <pre>
+pqn:45968
+Player ID  Yards  Play Number  Run Direction  Defense Formation  Result Type
+player1    45     12           left           4-3                 First Down
+player2    30     8            right          Nickel              No Gain
+player3    50     15           center         3-4                 Touchdown
+player4    15     20           left           Dime                First Down
+player5    5      25           right          4-3                 No Gain
+                </pre>
+                <h4>Research Questions:</h4>
+                <ul>
+                    <li>Explore the relationship between temperature and yards gained. What temperature results in the most yards?</li>
+                    <li>Can we predict the expected yards gained (yards) based on the running direction (runDir) and the number of plays (playNum)? What statistical model best fits the data?</li>
+                    <li>Is there a correlation between the running direction (runDir) and average yards gained?</li>
+                </ul>
+                <p><small>Note: Data above is simulated.</small></p>
+            </div>
+            <p>Each query is assigned a unique <strong>Problem Query Number (PQN)</strong> for quick access. After completing your analysis, you can post your solution and share it on the problem page for others to compare or ask for help!</p>
+            <p>Additionally, users can upload their own datasets and create custom queries, challenging others to solve new problems. These user-generated queries will also be saved to the database, ready to be tried by anyone!</p>
+        </div>
+        <a href="https://github.com/bchisholm08/CodeR_Sessions.git" class="cta-button">Start Practicing Now</a>
+    </div>
+</section>
+
+<style>
+    /* Session Section Styling */
+    .session-section {
+        background-color: #f0f4f8;
+        padding: 60px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 0;
+    }
+
+    .session-section .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .session-section h2 {
+        font-size: 2.8em;
+        color: #2a3d66;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .session-section p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 20px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+
+    .content {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+
+    .example-query {
+        background-color: #f4f7fb;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 30px auto;
+        max-width: 900px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    .example-query h3 {
+        font-size: 1.8em;
+        color: #2a3d66;
+        margin-bottom: 10px;
+    }
+
+    .example-query pre {
+        background-color: #333;
+        color: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 1em;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .example-query h4 {
+        font-size: 1.4em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .example-query ul {
+        font-size: 1.2em;
+        text-align: left;
+        color: #555;
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    .cta-button {
+        color: #fff;
+        background-color: #e74c3c;
+        padding: 12px 30px;
+        text-decoration: none;
+        font-size: 1.2em;
+        border-radius: 5px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .cta-button:hover {
+        background-color: #c0392b;
+    }
+</style>
+
+    <!-- What We're Working on Now Section -->
+    <section class="working-section">
+        <h2>What We're Working on Now</h2>
+        <p>Currently, our team is focused on expanding the CodeR Sessions </p>
+        <p>Stay tuned for updates as we continue to enhance our offerings and create even more engaging content for you!</p>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="content" id="sessions">
+        <div class="card">
+            <h3>Session 1: Introduction to R</h3>
+            <p>Learn the basics of R programming, from data structures to functions.</p>
+            <a href="#">Learn More</a>
+        </div>
+        <div class="card">
+            <h3>Session 2: Data Visualization</h3>
+            <p>Create stunning visualizations using ggplot2 and other powerful libraries.</p>
+            <a href="#">Learn More</a>
+        </div>
+        <div class="card">
+            <h3>Session 3: Statistical Analysis</h3>
+            <p>Understand and implement statistical methods in R, including t-tests and ANOVA.</p>
+            <a href="#">Learn More</a>
+        </div>
+        <div class="card">
+            <h3>Session 4: Advanced Data Manipulation</h3>
+            <p>Master the art of data manipulation with dplyr and tidyr.</p>
+            <a href="#">Learn More</a>
+        </div>
+    </section>
+
+
+
+
+    <!-- GitHub Collaboration Section -->
+<section class="collaboration-section">
+    <h2>Contribute to The CodeR Sessions!</h2>
+    <p>We are actively working on improving the RStudio CodeR Sessions, and we would love to have community input. Contribute code, contribute data, suggest improvements, or simply explore code for the project.</p>
+    <p>Check out the repository and get started by cloning the project, submitting pull requests, or opening issues with your ideas and feedback.</p>
+    <a href="https://github.com/bchisholm08/CodeR_Sessions.git" target="_blank" class="cta-button">Visit GitHub Repo</a>
+</section>
+
+<style>
+    /* Collaboration Section */
+    .collaboration-section {
+        background-color: #ffffff;
+        padding: 60px 20px;
+        text-align: center;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .collaboration-section h2 {
+        font-size: 2.5em;
+        color: #2a3d66;
+        margin-bottom: 20px;
+    }
+
+    .collaboration-section p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 20px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-button {
+        color: #fff;
+        background-color: #e74c3c;
+        padding: 12px 30px;
+        text-decoration: none;
+        font-size: 1.2em;
+        border-radius: 5px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #c0392b;
+    }
+</style>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 RStudio CodeR Sessions | <a href="#contact">Contact Us</a></p>
+    </footer>
+</body>
+
+</html>
