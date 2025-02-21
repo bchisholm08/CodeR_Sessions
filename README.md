@@ -2,7 +2,7 @@
 
 The home base for the CodeR-Sessions project.
 
-> **NOTE:** This project is in early development and not yet ready 
+> **NOTE:** This project is in extremely early development and not yet ready 
 for users. Please feel free to explore the codebase and make suggestions! 
 
 #
